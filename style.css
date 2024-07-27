@@ -1,0 +1,118 @@
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  * {
+    margin: 0;
+  }
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  input, button, textarea, select {
+    font: inherit;
+  }
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  #root, #__next {
+    isolation: isolate;
+  }
+
+  #library{
+    display: grid;
+    background-color: rgb(180, 51, 51);
+    height: 100vh;
+    grid-template-columns: minmax(200px,1fr) 5fr;
+    grid-template-rows: 50px 1fr;
+    gap: .5rem;
+  }
+
+  .navbar{
+    background-color: rgb(214, 55, 55);
+    grid-column: 1/3;
+
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem .5rem;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    text-transform: capitalize;
+    
+    h1{
+      font-weight: 400;
+    }
+
+    
+  }
+
+  .sidebar{
+    background-color: rgb(231, 229, 229);
+    border-radius: 10px;
+    margin-left: .5rem;
+    margin-bottom: .5rem;
+  }
+
+  .books{
+    border: 1px solid rgba(255, 255, 255, 0.719);
+    border-radius: 10px;
+    margin-right: .5rem;
+    margin-bottom: .5rem;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 1rem;
+    grid-template-rows: 8rem;
+    grid-auto-rows: 8rem;
+  }
+
+  .book{
+    background-color: hsl(0, 23%, 97%);
+    border-radius: 5px;
+   
+    height: auto;
+
+    padding: .5rem .5rem;
+    display: grid;
+    grid-template-rows: 1fr 10px;
+    flex-direction: column;
+
+    .author{
+        color: rgb(56, 55, 55);
+        font-size: 15px;
+        grid-row: 1/2;
+      
+    }
+    .title{
+       font-weight: 500;
+       padding-bottom: 5px;
+       font-size: 20px;
+       line-height: 22px;
+       grid-row: 1/2;
+    }
+
+    .pages{
+        font-size: 15px;
+        grid-row: 3/4;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-self: start;
+    }
+    .isRead::before{
+        content: "✅ ";
+    }
+
+    .notRead::before{
+        content: "Not read ";
+    }
+  }
+
