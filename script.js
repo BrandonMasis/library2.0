@@ -1,5 +1,6 @@
-const myLibrary = [];
 const domLibrary = document.querySelector('.books');
+const submitBookBtn = document.querySelector('#submitBook');
+const bookForm = document.querySelector('#bookForm');
 
 function Book(author, title, pages, status) {
   this.author = author;
@@ -7,61 +8,132 @@ function Book(author, title, pages, status) {
   this.pages = pages;
   this.status = status;
 }
+let theHobbit = new Book('J.R.R. Tolkien', 'The Hobbit', '310', false);
+let theStranger = new Book('Albert Camus', 'The Stranger', '123', true);
+let meditations = new Book('Marcus Aurelius', 'Meditations', '256', true);
+let sapiens = new Book(
+  'Yuval Noah Harari',
+  'Sapiens: A Brief History of Humankind',
+  '443',
+  false
+);
+let braveNewWorld = new Book('Aldous Huxley', 'Brave New World', '268', false);
 
-let theHobbit = new Book('tolkien', 'the hobbit', '100', 'not read ');
-let theStranger = new Book('Albert camus', 'The stranger', '200', 'read');
-let theRepublic = new Book('Plato', 'The republic', '325', 'not read');
+// Adding more books
+let crimeAndPunishment = new Book(
+  'Fyodor Dostoevsky',
+  'Crime and Punishment',
+  '671',
+  true
+);
+let dune = new Book('Frank Herbert', 'Dune', '412', false);
+let nineteenEightyFour = new Book('George Orwell', '1984', '328', true);
+let mobyDick = new Book('Herman Melville', 'Moby Dick', '585', false);
+let prideAndPrejudice = new Book(
+  'Jane Austen',
+  'Pride and Prejudice',
+  '279',
+  true
+);
 
-myLibrary.push(theHobbit, theStranger, theRepublic);
+let myLibrary = [
+  theHobbit,
+  theStranger,
+  meditations,
+  sapiens,
+  braveNewWorld,
+  crimeAndPunishment,
+  dune,
+  nineteenEightyFour,
+  mobyDick,
+  prideAndPrejudice,
+];
 
-function addBookToLibrary() {
+display();
+
+function display() {
   domLibrary.textContent = '';
 
   myLibrary.forEach((item) => {
-    let book = document.createElement('div');
-    book.classList = 'book';
+    // Create the book container
+    const book = document.createElement('div');
+    book.classList.add('book');
 
-    let topSection = document.createElement('div');
-    topSection.classList = 'top';
+    // Create the top section
+    const topSection = document.createElement('div');
+    topSection.classList.add('top');
 
-    let author = document.createElement('h4');
-    author.classList = 'author';
+    // Create the author element
+    const author = document.createElement('h4');
+    author.classList.add('author');
     author.textContent = item.author;
 
-    let title = document.createElement('h3');
-    title.classList = 'title';
+    // Create the title element
+    const title = document.createElement('h3');
+    title.classList.add('title');
     title.textContent = item.title;
 
+    // Append author and title to top section
     topSection.appendChild(author);
     topSection.appendChild(title);
 
-    let pages = document.createElement('p');
-    pages.classList = 'pages';
+    // Create the pages element
+    const pages = document.createElement('p');
+    pages.classList.add('pages');
+    pages.textContent = `${item.pages} pages`;
 
-    let status = document.createElement('span');
-    status.classList = 'isRead';
+    // Create the status element
+    const status = document.createElement('span');
 
-    pages.textContent = '| ' + item.pages + ' pages';
+    if (item.status) {
+      status.classList.add('isRead');
+    } else {
+      status.classList.add('notRead');
+    }
 
+    // Append status to pages element
     pages.appendChild(status);
 
+    // Append top section and pages to book container
     book.appendChild(topSection);
     book.appendChild(pages);
 
+    // Append book container to DOM
     domLibrary.appendChild(book);
   });
 }
 
-// Display every book from library on the dom
+// Need to let user input information to add new books
 
-{
-  /* <div class="book">
-                <div class="top">
-                    <h4 class="author">Tolkien</h4>
-                    <h3 class="title">Lord of the Rings</h3>
-                </div>
-                <p class="pages"><span
-                        class="isRead"></span> | 240 pages
-                </p>
-            </div> */
+function getInputInformation() {
+  let author = document.getElementById('bookAuthor').value;
+  let title = document.getElementById('bookTitle').value;
+  let pages = document.getElementById('bookPages').value;
+  let status = document.getElementById('bookStatus').value;
+
+  if (status == 'Read') {
+    status = true;
+  } else {
+    status = false;
+  }
+
+  return { author, title, pages, status };
 }
+
+// Preventing form to submit
+bookForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+});
+
+// Check if form is valid before getting it's data
+submitBookBtn.addEventListener('click', (e) => {
+  if (bookForm.checkValidity()) {
+    let book = getInputInformation();
+    let item = new Book(book.author, book.title, book.pages, book.status);
+
+    myLibrary.push(item);
+    display();
+  } else {
+    alert('Please fill all the fields');
+  }
+});

@@ -13,68 +13,37 @@
 <body>
     <section id="library">
         <div class="navbar">
-            <h1>📚 My books</h1>
-            <button>+ Add new book</button>
+            <h1>•ᴗ•</h1>
+
         </div>
-        <div class="sidebar"></div>
+        <div class="sidebar">
+            <form id="bookForm">
+                <h4>Add a New Book</h4>
+                <label for="bookAuthor">Author</label>
+                <input type="text" name="bookAuthor"
+                    id="bookAuthor" required>
+
+                <label for="bookTitle">Title</label>
+                <input type="text" name="bookTitle"
+                    id="bookTitle" required>
+
+                <label for="bookPages">Pages</label>
+                <input type="number" name="bookPages"
+                    id="bookPages" required>
+
+                <label for="bookStatus">Status</label>
+                <select name="bookStatus" id="bookStatus"
+                    required>
+                    <option value="Unread">Unread</option>
+                    <option value="Read">Read</option>
+                </select>
+
+                <input type="submit" id="submitBook"
+                    value="Add Book">
+            </form>
+        </div>
         <div class="books">
-            <div class="book">
-                <div class="top">
-                    <h4 class="author">Tolkien</h4>
-                    <h3 class="title">Lord of the Rings</h3>
-                </div>
-                <p class="pages"><span
-                        class="isRead"></span> | 240 pages
-                </p>
-            </div>
-            <div class="book">
-                <div class="top">
-                    <h4 class="author">George Orwell</h4>
-                    <h3 class="title">1984</h3>
-                </div>
-                <p class="pages"><span
-                        class="isRead"></span> | 328 pages
-                </p>
-            </div>
-            <div class="book">
-                <div class="top">
-                    <h4 class="author">J.K. Rowling</h4>
-                    <h3 class="title">Harry Potter and the
-                        Sorcerer's Stone</h3>
-                </div>
-                <p class="pages"><span
-                        class="isRead"></span> | 309 pages
-                </p>
-            </div>
-            <div class="book">
-                <div class="top">
-                    <h4 class="author">F. Scott Fitzgerald
-                    </h4>
-                    <h3 class="title">The Great Gatsby</h3>
-                </div>
-                <p class="pages"><span
-                        class="isRead"></span> | 180 pages
-                </p>
-            </div>
-            <div class="book">
-                <div class="top">
-                    <h4 class="author">Harper Lee</h4>
-                    <h3 class="title">To Kill a Mockingbird
-                    </h3>
-                </div>
-                <p class="pages"><span
-                        class="isRead"></span> | 281 pages
-                </p>
-            </div>
-            <div class="book">
-                <div class="top">
-                    <h4 class="author">Mary Shelley</h4>
-                    <h3 class="title">Frankenstein</h3>
-                </div>
-                <p class="pages"><span
-                        class="isRead"></span> | 280 pages
-                </p>
-            </div>
+        </div>
         </div>
     </section>
 
