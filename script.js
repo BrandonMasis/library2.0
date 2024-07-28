@@ -107,9 +107,15 @@ function display() {
     // Append status to pages element
     pages.appendChild(status);
 
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'deleteBtn';
+    deleteBtn.textContent = '🗑️';
+
     // Append top section and pages to book container
+
     book.appendChild(topSection);
     book.appendChild(pages);
+    book.appendChild(deleteBtn);
 
     // Append book container to DOM
     domLibrary.appendChild(book);
@@ -146,6 +152,7 @@ submitBookBtn.addEventListener('click', (e) => {
 
     myLibrary.push(item);
     display();
+    bookForm.reset();
   } else {
     alert('Please fill all the fields');
   }
@@ -166,4 +173,14 @@ addGlobalEventListener('click', '.pages span', (e) => {
   }
 
   console.table(myLibrary);
+});
+
+// delete book
+addGlobalEventListener('click', '.deleteBtn', (e) => {
+  let targetBook = e.target.parentElement;
+  let bookIndex = targetBook.getAttribute('data-id');
+
+  myLibrary.splice(bookIndex, 1);
+
+  display();
 });
