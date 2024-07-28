@@ -49,15 +49,28 @@ let myLibrary = [
   prideAndPrejudice,
 ];
 
+function addGlobalEventListener(type, selector, callback) {
+  document.addEventListener(type, (e) => {
+    if (e.target.matches(selector)) callback(e);
+  });
+}
+
+// Example usage:
+addGlobalEventListener('click', 'div', (e) => {
+  console.log('hi');
+});
+
 display();
 
 function display() {
   domLibrary.textContent = '';
-
+  let index = 0;
   myLibrary.forEach((item) => {
     // Create the book container
     const book = document.createElement('div');
     book.classList.add('book');
+    book.setAttribute('data-id', index);
+    index++;
 
     // Create the top section
     const topSection = document.createElement('div');
@@ -136,4 +149,21 @@ submitBookBtn.addEventListener('click', (e) => {
   } else {
     alert('Please fill all the fields');
   }
+});
+
+// toggle status
+
+addGlobalEventListener('click', '.pages span', (e) => {
+  let targetBook = e.target.parentElement.parentElement;
+  let bookIndex = targetBook.getAttribute('data-id');
+
+  if (e.target.className == 'isRead') {
+    e.target.className = 'notRead';
+    myLibrary[bookIndex].status = false;
+  } else {
+    e.target.className = 'isRead';
+    myLibrary[bookIndex].status = true;
+  }
+
+  console.table(myLibrary);
 });
